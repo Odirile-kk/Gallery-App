@@ -11,6 +11,7 @@ import { setupDatabase, saveDataToDatabase } from "../Services/DatabaseService";
 export default function CaptureScreen({ navigation }) {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
+  const [cameraType, setCameraType] = useState();
   const location = useSelector((state) => state.location.location);
   const address = useSelector((state) => state.location.address);
   const dispatch = useDispatch();
@@ -40,6 +41,14 @@ export default function CaptureScreen({ navigation }) {
     }
   };
 
+  const toggleCameraType = () => {
+    setCameraType(
+      cameraType === Camera.Constants.Type.back
+        ? Camera.Constants.Type.front
+        : Camera.Constants.Type.back
+    );
+  };
+
   if (hasCameraPermission === null) {
     return <View />;
   }
@@ -54,11 +63,14 @@ export default function CaptureScreen({ navigation }) {
         <Camera
           ref={(ref) => setCamera(ref)}
           style={styles.camera}
-          type={Camera.Constants.Type.back}
+          type={cameraType}
         />
         <TouchableOpacity onPress={takePicture} style={styles.captureButton}>
            <MaterialCommunityIcons name="camera" size={30} color="white" />
         </TouchableOpacity>
+        <TouchableOpacity onPress={toggleCameraType} style={styles.toggleCameraButton}>
+        <MaterialCommunityIcons name="camera-flip" size={30} color="white" />
+      </TouchableOpacity>
       </View>
     </View>
   );
@@ -82,17 +94,14 @@ const styles = StyleSheet.create({
     
   },
   toggleCameraButton: {
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: "black",
-    marginTop: 10,
+    position: "absolute",
+    top: 20,
+    left: "87%",
   },
-  toggleCameraButtonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+  // toggleCameraButtonText: {
+  //   fontSize: 16,
+  //   fontWeight: "bold",
+  // },
   viewGalleryButton: {
     position: "absolute",
     bottom: 20,
