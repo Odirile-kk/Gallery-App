@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabase("mydb.db");
+const db = SQLite.openDatabase("mydbgallery.db");
 
 // Function to create the table if it doesn't exist
 const setupDatabase = () => {

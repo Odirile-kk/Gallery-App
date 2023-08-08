@@ -93,17 +93,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#c9b09a",
   },
   imageContainer: {
-    justifyContent: "space-evenly",
+
     flexWrap: "wrap",
-    // width: '40%',
-    // height: '80%'
+    
   },
   thumbnail: {
     width: 120,
     height: 140,
-    marginLeft: 10,
+    // marginLeft: 10,
     //  marginRight: 5,
-    marginTop: 10,
+    // marginTop: 10,
   },
   modalBackground: {
     flex: 1,
